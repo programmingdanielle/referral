@@ -6,24 +6,7 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-
-
-<!--<h1>Insurances</h1>
-<table class="table">
-    <p th:unless="${insurances} and ${insurances.size()}">No insurances are currently in the database.</p>
-
-    <p th:if="${insurances} and ${insurances.size()}">
-    <tr>
-        <th>Insurance Name</th>
-    </tr>
-
-    <tr th:each="insurance : ${insurances}">
-        <td th:text="${insurance.insuranceName}"></td>
-    </tr>
-    </p>
-</table>-->
-
-<h1>Specialists</h1>
+<h1>Affiliates</h1>
 
 <table class="table">
 <p th:unless="${specialists} and ${specialists.size()}">No specialists are currently in the database.</p>
@@ -39,7 +22,7 @@
     <tr th:each="specialist : ${specialists}">
         <td></td>
         <td th:text="${specialist.specialistName}"></td>
-        <td th:text="${specialist.specialistType}"></td>
+        <td th:text="${specialist.type.typeName}"></td>
         <td th:text="${specialist.specialistLocation}"></td>
         <td th:text="${specialist.specialistContact}"></td>
         <td th:text="${specialist.insurance.insuranceName}"></td>

@@ -7,12 +7,13 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <h1>Find Your Specialist</h1>
+
 <table class="table">
     Specialist Type:
     <select>
-        <option th:each="specialist : ${specialists}"
-                th:text="${specialist.specialistType}"
-                th:value="${specialistId}">
+        <option th:each="type : ${types}"
+                th:text="${type.typeName}"
+                th:value="${typeId}">
         </option>
     </select>
 

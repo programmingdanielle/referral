@@ -13,10 +13,6 @@ public class Specialist {
     private int id;
 
     @NotNull
-    @Size(min=3, max=15)
-    private String specialistType;
-
-    @NotNull
     @Size(min=3, max=50)
     private String specialistName;
 
@@ -38,6 +34,13 @@ public class Specialist {
         return insurance;
     }
 
+    @ManyToOne
+    private Type type;
+
+    public Type getType() { return type; }
+
+    public void setType(Type type) { this.type = type; }
+
     public void setInsurance(Insurance insurance) { this.insurance = insurance;}
 
     public int getId() {
@@ -47,8 +50,6 @@ public class Specialist {
     public void setId(int id) {
         this.id = id;
     }
-
-    public Specialist(String specialistType) { this.specialistType = specialistType; }
 
     public String getSpecialistName() {
         return specialistName;
@@ -64,14 +65,6 @@ public class Specialist {
 
     public void setSpecialistLocation(String specialistLocation) {
         this.specialistLocation = specialistLocation;
-    }
-
-    public String getSpecialistType() {
-        return specialistType;
-    }
-
-    public void setSpecialistType(String specialistType) {
-        this.specialistType = specialistType;
     }
 
     public String getSpecialistContact() {

@@ -2,8 +2,10 @@ package com.wildwoodim.specialist.controllers;
 
 import com.wildwoodim.specialist.models.data.InsuranceDao;
 import com.wildwoodim.specialist.models.data.SpecialistDao;
+import com.wildwoodim.specialist.models.data.TypeDao;
 import com.wildwoodim.specialist.models.forms.Insurance;
 import com.wildwoodim.specialist.models.forms.Specialist;
+import com.wildwoodim.specialist.models.forms.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping(value = "specialist")
 public class SpecialistController {
 
     @Autowired
@@ -26,16 +28,8 @@ public class SpecialistController {
     @Autowired
     public InsuranceDao insuranceDao;
 
-    @RequestMapping(value = "")
-    public String index(Model model) {
-
-        model.addAttribute("title", "Wildwood Internal Medicine");
-        model.addAttribute("specialists", specialistDao.findAll());
-        model.addAttribute("insurances", insuranceDao.findAll());
-
-        return "index";
-
-    }
+    @Autowired
+    public TypeDao typeDao;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String displayAddSpecialist(Model model) {
@@ -43,16 +37,20 @@ public class SpecialistController {
         model.addAttribute("title", "WWIM: Add Specialist");
         model.addAttribute(new Specialist());
         model.addAttribute("insurances", insuranceDao.findAll());
+        model.addAttribute("types", typeDao.findAll());
 
         return "specialist/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSpecialist(@ModelAttribute @Valid Specialist newSpecialist, @RequestParam int insuranceId,
+    public String processAddSpecialist(@ModelAttribute @Valid Specialist newSpecialist, @RequestParam int insuranceId, @RequestParam int typeId,
                                        Errors errors, Model model) {
 
         Optional<Insurance> optionalInsurance =  insuranceDao.findById(insuranceId);
         Insurance insurances = optionalInsurance.get();
+
+        Optional<Type> optionalType = typeDao.findById(typeId);
+        Type types = optionalType.get();
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "New Specialist");
@@ -60,20 +58,12 @@ public class SpecialistController {
         }
 
         newSpecialist.setInsurance(insurances);
+        newSpecialist.setType(types);
         specialistDao.save(newSpecialist);
 
 
         return "redirect:/";
 
-    }
-
-    @RequestMapping(value = "display")
-    public String displayAllSpecialists(Model model) {
-        model.addAttribute("title", "Display All Specialists");
-        model.addAttribute("specialists", specialistDao.findAll());
-        model.addAttribute("insurances", insuranceDao.findAll());
-
-        return "display/index";
     }
 
 }

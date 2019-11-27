@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" style="max-width:600px;" th:object="${type}">
+    <div class="form-group">
+        <label th:for="typeName">Add Type</label>
+        <input class="form-control" th:field="*{typeName}" />
+        <span th:errors="*{typeName}" class="error"></span>
+    </div>
+    <input type="submit" value="Submit New Type" />
+</form>
+
+</body>
+</html>

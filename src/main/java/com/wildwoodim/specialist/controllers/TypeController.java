@@ -1,8 +1,7 @@
 package com.wildwoodim.specialist.controllers;
 
-
-import com.wildwoodim.specialist.models.data.InsuranceDao;
-import com.wildwoodim.specialist.models.forms.Insurance;
+import com.wildwoodim.specialist.models.data.TypeDao;
+import com.wildwoodim.specialist.models.forms.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,32 +13,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(value = "insurance")
-public class InsuranceController {
+@RequestMapping(value = "type")
+public class TypeController {
 
     @Autowired
-    InsuranceDao insuranceDao;
+    TypeDao typeDao;
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String addInsuranceForm(Model model) {
+    public String addType(Model model) {
 
-        model.addAttribute("title", "WWIM: Add Insurance");
-        model.addAttribute(new Insurance());
+        model.addAttribute("title", "WWIM: Add Type");
+        model.addAttribute(new Type());
 
-        return "insurance/add";
+        return "type/add";
 
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processInsuranceForm(@ModelAttribute @Valid Insurance newInsurance,
+    public String processTypeForm(@ModelAttribute @Valid Type newType,
                                        Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "WWIM: Add Insurance");
-            return "insurance/add";
+            model.addAttribute("title", "WWIM: Add Type");
+            return "type/add";
         }
 
-        insuranceDao.save(newInsurance);
+        typeDao.save(newType);
 
         return "redirect:/";
 
