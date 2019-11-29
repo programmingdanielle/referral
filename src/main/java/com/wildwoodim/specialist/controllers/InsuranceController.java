@@ -2,7 +2,7 @@ package com.wildwoodim.specialist.controllers;
 
 
 import com.wildwoodim.specialist.models.data.InsuranceDao;
-import com.wildwoodim.specialist.models.forms.Insurance;
+import com.wildwoodim.specialist.models.Insurance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+
+<table class="table table-bordered">
+<!--
+    Search results for <em><span th:text="${param.searchTerm[0]}"></span></em>....-->
+
+    <th></th>
+    <th>Type</th>
+
+    <tr th:each="result : ${results}">
+        <td th:text="${result.specialistName}"></td>
+    </tr>
+
+    <!--<tr th:each="typeResult : ${types}">
+        <td th:text="${typeResult.typeName}">
+        </td>
+    </tr>-->
+<!--
+    <tr th:each="insuranceResult : ${insuranceResults}">
+        <td th:text="${insuranceResult}"></td>
+    </tr>
+-->
+
+</table>
+</body>
+</html>

@@ -7,33 +7,34 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <h1>Find Your Specialist</h1>
+<form method="post">
+<table class="table" th:object="${type}">
+    <label th:for="typeId">Specialist Type</label>
 
-<table class="table">
-    Specialist Type:
-    <select>
+    <select name="typeId">
         <option th:each="type : ${types}"
                 th:text="${type.typeName}"
-                th:value="${typeId}">
+                th:value="${type.id}">
         </option>
     </select>
-
 <br />
 <br />
 
-    Accepted Insurances:
+<!--    Accepted Insurances:
 <select>
     <option th:each="insurance : ${insurances}"
             th:text="${insurance.insuranceName}"
             th:value="${insuranceId}">
 
     </option>
-</select>
+</select>-->
 
     <br />
     <br />
 
     <input type="submit" value="Get Results" />
 </table>
+</form>
 
 </body>
 </html>

@@ -20,7 +20,7 @@ public class MainController {
     @Autowired
     SpecialistDao specialistDao;
 
-    @RequestMapping(value = "")
+/*    @RequestMapping(value = "")
     public String index(Model model) {
 
         model.addAttribute("title", "Wildwood Internal Medicine");
@@ -28,7 +28,7 @@ public class MainController {
         model.addAttribute("insurances", insuranceDao.findAll());
 
         return "index";
-    }
+    }*/
 
     @RequestMapping(value = "display")
     public String displayAllSpecialists(Model model) {
@@ -38,5 +38,12 @@ public class MainController {
         model.addAttribute("types", typeDao.findAll());
 
         return "display/index";
+    }
+
+    @RequestMapping(value="test")
+    public String testMaps() {
+
+        return "test";
+
     }
 }

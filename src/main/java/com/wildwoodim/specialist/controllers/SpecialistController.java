@@ -3,9 +3,9 @@ package com.wildwoodim.specialist.controllers;
 import com.wildwoodim.specialist.models.data.InsuranceDao;
 import com.wildwoodim.specialist.models.data.SpecialistDao;
 import com.wildwoodim.specialist.models.data.TypeDao;
-import com.wildwoodim.specialist.models.forms.Insurance;
-import com.wildwoodim.specialist.models.forms.Specialist;
-import com.wildwoodim.specialist.models.forms.Type;
+import com.wildwoodim.specialist.models.Insurance;
+import com.wildwoodim.specialist.models.Specialist;
+import com.wildwoodim.specialist.models.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +48,6 @@ public class SpecialistController {
 
         Optional<Insurance> optionalInsurance =  insuranceDao.findById(insuranceId);
         Insurance insurances = optionalInsurance.get();
-
         Optional<Type> optionalType = typeDao.findById(typeId);
         Type types = optionalType.get();
 

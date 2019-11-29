@@ -1,7 +1,7 @@
 package com.wildwoodim.specialist.controllers;
 
 import com.wildwoodim.specialist.models.data.TypeDao;
-import com.wildwoodim.specialist.models.forms.Type;
+import com.wildwoodim.specialist.models.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

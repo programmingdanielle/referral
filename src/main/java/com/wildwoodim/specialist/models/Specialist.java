@@ -1,4 +1,4 @@
-package com.wildwoodim.specialist.models.forms;
+package com.wildwoodim.specialist.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
