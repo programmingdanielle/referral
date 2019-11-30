@@ -50,10 +50,15 @@ public class SearchController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String searchResults(@RequestParam Integer typeId, @RequestParam Integer insuranceId, Model model) {
 
+        List<Specialist> size = specialistDao.findAllByTypeIdAndInsuranceId(typeId, insuranceId);
+        int totalSize = size.size();
 
         model.addAttribute("title", "Search Results");/*
         model.addAttribute("types", typeDao.findById(typeId).orElse(null));*/
         model.addAttribute("results", specialistDao.findAllByTypeIdAndInsuranceId(typeId, insuranceId));
+        model.addAttribute("insurance", specialistDao.findByInsuranceId(insuranceId));
+        model.addAttribute("type", specialistDao.findByTypeId(typeId));
+        model.addAttribute("size", totalSize);
 
         return "display/search";
 

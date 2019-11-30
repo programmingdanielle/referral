@@ -7,9 +7,10 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <h1>Find Your Specialist</h1>
+<br />
 <form method="post">
 <table class="table" th:object="${type}">
-    <label th:for="typeId">Specialist Type</label>
+    <label th:for="typeId">Specialist Type: </label>
 
     <select name="typeId">
         <option th:each="type : ${types}"
@@ -20,7 +21,7 @@
 <br />
 <br />
 
-    Accepted Insurances:
+    <b>Accepted Insurances:</b>
 <select name="insuranceId">
     <option th:each="insurance : ${insurances}"
             th:text="${insurance.insuranceName}"

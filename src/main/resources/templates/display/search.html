@@ -8,8 +8,9 @@
 
 
 <table class="table table-bordered">
-<!--
-    Search results for <em><span th:text="${param.searchTerm[0]}"></span></em>....-->
+
+    Showing <span th:text="${size}"></span> result(s) for <em><span th:text="${type.type.typeName}"></span></em> and
+    <em><span th:text="${insurance.insurance.insuranceName}"></span></em> entries......
 
     <th>Doctor's Name</th>
     <th>Type</th>
@@ -21,16 +22,6 @@
         <td th:text="${result.insurance.insuranceName}"></td>
 
     </tr>
-
-    <!--<tr th:each="typeResult : ${types}">
-        <td th:text="${typeResult.typeName}">
-        </td>
-    </tr>-->
-<!--
-    <tr th:each="insuranceResult : ${insuranceResults}">
-        <td th:text="${insuranceResult}"></td>
-    </tr>
--->
 
 </table>
 </body>
