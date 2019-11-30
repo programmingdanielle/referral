@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -30,6 +31,7 @@ public class SearchController {
     public String indexSearch(Model model) {
 
         model.addAttribute("types", typeDao.findAll());
+        model.addAttribute("insurances", insuranceDao.findAll());
 
         return "index";
 
@@ -39,19 +41,19 @@ public class SearchController {
     public String indexSelectedSearch(Model model) {
 
         model.addAttribute("types", typeDao.findAll());
+        model.addAttribute("insurances", insuranceDao.findAll());
 
         return "index";
 
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String searchResults(@RequestParam Integer typeId, Model model) {
-
+    public String searchResults(@RequestParam Integer typeId, @RequestParam Integer insuranceId, Model model) {
 
 
         model.addAttribute("title", "Search Results");/*
         model.addAttribute("types", typeDao.findById(typeId).orElse(null));*/
-        model.addAttribute("results", specialistDao.findByTypeId(typeId));
+        model.addAttribute("results", specialistDao.findAllByTypeIdAndInsuranceId(typeId, insuranceId));
 
         return "display/search";
 

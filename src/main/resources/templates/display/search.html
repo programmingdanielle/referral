@@ -11,11 +11,15 @@
 <!--
     Search results for <em><span th:text="${param.searchTerm[0]}"></span></em>....-->
 
-    <th></th>
+    <th>Doctor's Name</th>
     <th>Type</th>
+    <th>Insurance</th>
 
     <tr th:each="result : ${results}">
         <td th:text="${result.specialistName}"></td>
+        <td th:text="${result.type.typeName}"></td>
+        <td th:text="${result.insurance.insuranceName}"></td>
+
     </tr>
 
     <!--<tr th:each="typeResult : ${types}">

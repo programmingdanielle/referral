@@ -20,14 +20,14 @@
 <br />
 <br />
 
-<!--    Accepted Insurances:
-<select>
+    Accepted Insurances:
+<select name="insuranceId">
     <option th:each="insurance : ${insurances}"
             th:text="${insurance.insuranceName}"
-            th:value="${insuranceId}">
+            th:value="${insurance.id}">
 
     </option>
-</select>-->
+</select>
 
     <br />
     <br />
