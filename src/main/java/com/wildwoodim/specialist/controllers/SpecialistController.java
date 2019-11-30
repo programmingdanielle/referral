@@ -43,23 +43,25 @@ public class SpecialistController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSpecialist(@ModelAttribute @Valid Specialist newSpecialist, @RequestParam int insuranceId, @RequestParam int typeId,
+    public String processAddSpecialist(@Valid @ModelAttribute Specialist newSpecialist, @RequestParam int insuranceId, @RequestParam int typeId,
                                        Errors errors, Model model) {
 
-        Optional<Insurance> optionalInsurance =  insuranceDao.findById(insuranceId);
+        Optional<Insurance> optionalInsurance = insuranceDao.findById(insuranceId);
         Insurance insurances = optionalInsurance.get();
         Optional<Type> optionalType = typeDao.findById(typeId);
         Type types = optionalType.get();
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "New Specialist");
-            return "specialist/add";
-        }
+        Specialist existingSpecialist = specialistDao.findBySpecialistName(newSpecialist.getSpecialistName());
+
+        if (existingSpecialist != null) {
+            errors.rejectValue("specialistName", "specialistName.alreadyExists", "A doctor with that name already exists in the database.");
+            System.out.println("I found error");
+            return "/specialist/add";
+    }
 
         newSpecialist.setInsurance(insurances);
         newSpecialist.setType(types);
         specialistDao.save(newSpecialist);
-
 
         return "redirect:/";
 

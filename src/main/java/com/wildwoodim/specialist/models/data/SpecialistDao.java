@@ -12,6 +12,8 @@ import java.util.List;
 @Transactional
 public interface SpecialistDao extends CrudRepository<Specialist, Integer>, JpaSpecificationExecutor {
 
+    public Specialist findBySpecialistName(String specialistName);
+
     public List<Specialist> findAllByTypeIdAndInsuranceId(Integer typeId, Integer insuranceId);
 
 }

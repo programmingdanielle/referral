@@ -13,7 +13,7 @@
     <div class="form-group">
         <label th:for="specialistName">Specialist Name</label>
         <input class="form-control" th:field="*{specialistName}" />
-        <span th:errors="*{specialistName}" class="error"></span>
+        <div class="errors" th:errors="*{specialistName}"></div>
     </div>
 
     <div class="form-group">
