@@ -6,7 +6,16 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
- <p th:text="${specialists}"></p>
+<h1>About <span th:text="${specialists.specialistName}"></span></h1>
+
+ <b>Name: </b> <span th:text="${specialists.specialistName}"></span>
+<br />
+<b>Location: </b> <span th:text="${specialists.specialistLocation}"></span>
+
+<br /> <br /><br /> <br /><br /> <br />
+
+<p>Notes go here.
+</p>
 
 </body>
 </html>

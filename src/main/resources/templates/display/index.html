@@ -20,13 +20,14 @@
 </tr>
 
     <tr th:each="specialist : ${specialists}">
-        <td></td>
+        <td><a th:href="'/specialist/' + ${specialist.id}" th:text="Profile"></a></td>
         <td th:text="${specialist.specialistName}"></td>
         <td th:text="${specialist.type.typeName}"></td>
         <td th:text="${specialist.specialistLocation}"></td>
         <td th:text="${specialist.specialistContact}"></td>
         <td th:text="${specialist.insurance.insuranceName}"></td>
     </tr>
+
 
 </table>
 

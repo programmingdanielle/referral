@@ -25,6 +25,8 @@ public class Specialist {
             message = "Invalid phone number")
     private String specialistContact;
 
+    private String note;
+
     public Specialist() {}
 
     @ManyToOne
