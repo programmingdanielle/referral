@@ -37,6 +37,17 @@ public class Specialist {
     @ManyToOne
     private Type type;
 
+    @ManyToOne
+    private Rating rating;
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
     public Type getType() { return type; }
 
     public void setType(Type type) { this.type = type; }

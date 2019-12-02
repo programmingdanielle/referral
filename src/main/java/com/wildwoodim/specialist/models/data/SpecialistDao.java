@@ -13,13 +13,15 @@ import java.util.List;
 @Transactional
 public interface SpecialistDao extends CrudRepository<Specialist, Integer>, JpaSpecificationExecutor {
 
+    public Specialist findById(int id);
+
     public Specialist findBySpecialistName(String specialistName);
 
     public List<Specialist> findAllByTypeIdAndInsuranceId(Integer typeId, Integer insuranceId);
 
-    public Specialist findByTypeId(int typeId);
+    public Specialist findFirstByTypeId(int typeId);
 
-    public Specialist findByInsuranceId(int insuranceId);
+    public Specialist findFirstByInsuranceId(int insuranceId);
 /*
     @Query(countByTypeIdAndInsuranceId)
     Integer countByTypeIdAndInsuranceId(int typeId, int insuranceId);

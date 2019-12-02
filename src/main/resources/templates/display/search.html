@@ -9,19 +9,35 @@
 
 <table class="table table-bordered">
 
-    Showing <span th:text="${size}"></span> result(s) for <em><span th:text="${type.type.typeName}"></span></em> and
+
+
+    <p th:unless="${specialists} and ${specialists.size()}">There are no results that match your search criteria.</p>
+
+        <!--<em><span th:text="${type.type.typeName}"></span></em> and
+        <em><span th:text="${insurance.insurance.insuranceName}"></span></em>..</p>-->
+
+    <p th:if="${specialists} and ${specialists.size()}">
+
+    Showing <span th:text="${size}"></span> result(s)
+    for <em><span th:text="${type.type.typeName}"></span></em> and
     <em><span th:text="${insurance.insurance.insuranceName}"></span></em> entries......
 
+    <th></th>
     <th>Doctor's Name</th>
     <th>Type</th>
     <th>Insurance</th>
+    <th>Rating</th>
 
-    <tr th:each="result : ${results}">
-        <td th:text="${result.specialistName}"></td>
-        <td th:text="${result.type.typeName}"></td>
-        <td th:text="${result.insurance.insuranceName}"></td>
+    <tr th:each="specialist : ${specialists}">
+        <td><a th:href="'/specialist/' + ${specialist.id}" th:text="Profile"></a></td>
+        <td th:text="${specialist.specialistName}"></td>
+        <td th:text="${specialist.type.typeName}"></td>
+        <td th:text="${specialist.insurance.insuranceName}"></td>
+        <td th:text="${specialist.rating.star}"></td>
 
     </tr>
+
+</p>
 
 </table>
 </body>

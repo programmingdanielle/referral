@@ -1,6 +1,8 @@
 package com.wildwoodim.specialist.controllers;
 
+import com.wildwoodim.specialist.models.Rating;
 import com.wildwoodim.specialist.models.data.InsuranceDao;
+import com.wildwoodim.specialist.models.data.RatingDao;
 import com.wildwoodim.specialist.models.data.SpecialistDao;
 import com.wildwoodim.specialist.models.data.TypeDao;
 import com.wildwoodim.specialist.models.Insurance;
@@ -31,6 +33,9 @@ public class SpecialistController {
     @Autowired
     public TypeDao typeDao;
 
+    @Autowired
+    public RatingDao ratingDao;
+
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String displayAddSpecialist(Model model) {
 
@@ -38,18 +43,21 @@ public class SpecialistController {
         model.addAttribute(new Specialist());
         model.addAttribute("insurances", insuranceDao.findAll());
         model.addAttribute("types", typeDao.findAll());
+        model.addAttribute("ratings", ratingDao.findAll());
 
         return "specialist/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSpecialist(@Valid @ModelAttribute Specialist newSpecialist, @RequestParam int insuranceId, @RequestParam int typeId,
-                                       Errors errors, Model model) {
+                                       @RequestParam int ratingId, Errors errors, Model model) {
 
         Optional<Insurance> optionalInsurance = insuranceDao.findById(insuranceId);
         Insurance insurances = optionalInsurance.get();
         Optional<Type> optionalType = typeDao.findById(typeId);
         Type types = optionalType.get();
+        Optional<Rating> optionalRating = ratingDao.findById(ratingId);
+        Rating ratings = optionalRating.get();
 
         Specialist existingSpecialist = specialistDao.findBySpecialistName(newSpecialist.getSpecialistName());
 
@@ -61,6 +69,7 @@ public class SpecialistController {
 
         newSpecialist.setInsurance(insurances);
         newSpecialist.setType(types);
+        newSpecialist.setRating(ratings);
         specialistDao.save(newSpecialist);
 
         return "redirect:/";

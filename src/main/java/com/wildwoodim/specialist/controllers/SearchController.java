@@ -8,6 +8,7 @@ import com.wildwoodim.specialist.models.data.TypeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
@@ -30,6 +31,7 @@ public class SearchController {
     @RequestMapping(value = "")
     public String indexSearch(Model model) {
 
+        model.addAttribute("title", "Wildwood Internal Medicine: Referral Coordinator");
         model.addAttribute("types", typeDao.findAll());
         model.addAttribute("insurances", insuranceDao.findAll());
 
@@ -40,6 +42,7 @@ public class SearchController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String indexSelectedSearch(Model model) {
 
+        model.addAttribute("title", "Wildwood Internal Medicine: Referral Coordinator");
         model.addAttribute("types", typeDao.findAll());
         model.addAttribute("insurances", insuranceDao.findAll());
 
@@ -55,12 +58,21 @@ public class SearchController {
 
         model.addAttribute("title", "Search Results");/*
         model.addAttribute("types", typeDao.findById(typeId).orElse(null));*/
-        model.addAttribute("results", specialistDao.findAllByTypeIdAndInsuranceId(typeId, insuranceId));
-        model.addAttribute("insurance", specialistDao.findByInsuranceId(insuranceId));
-        model.addAttribute("type", specialistDao.findByTypeId(typeId));
+        model.addAttribute("specialists", specialistDao.findAllByTypeIdAndInsuranceId(typeId, insuranceId));
+        model.addAttribute("insurance", specialistDao.findFirstByInsuranceId(insuranceId));
+        model.addAttribute("type", specialistDao.findFirstByTypeId(typeId));
         model.addAttribute("size", totalSize);
-
         return "display/search";
+
+    }
+
+    @RequestMapping(value = "specialist/{specialistId}")
+    public String displayProfile(Model model, @PathVariable int specialistId) {
+
+        model.addAttribute("title", "View Profile");
+        model.addAttribute("specialists", specialistDao.findById(specialistId));
+
+        return "profile/index";
 
     }
 

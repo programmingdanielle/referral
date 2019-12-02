@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<h1>Rating System</h1>
+
+<table class="table">
+    <p th:unless="${ratings} and ${ratings.size()}">No specialists are currently in the database.</p>
+    <tr>
+        <th></th>
+        <th>Star Rating</th>
+        <th>Value</th>
+    </tr>
+
+    <tr th:each="rating : ${ratings}">
+        <td></td>
+        <td th:text="${rating.star}"></td>
+        <td th:text="${rating.value}"></td>
+    </tr>
+
+</table>
+
+
+</body>
+</html>
