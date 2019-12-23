@@ -53,18 +53,18 @@ public class SpecialistController {
                                        @RequestParam int ratingId, Errors errors, Model model) {
 
         Optional<Insurance> optionalInsurance = insuranceDao.findById(insuranceId);
-        Insurance insurances = optionalInsurance.get();
-        Optional<Type> optionalType = typeDao.findById(typeId);
-        Type types = optionalType.get();
-        Optional<Rating> optionalRating = ratingDao.findById(ratingId);
-        Rating ratings = optionalRating.get();
+            Insurance insurances = optionalInsurance.get();
+            Optional<Type> optionalType = typeDao.findById(typeId);
+            Type types = optionalType.get();
+            Optional<Rating> optionalRating = ratingDao.findById(ratingId);
+            Rating ratings = optionalRating.get();
 
-        Specialist existingSpecialist = specialistDao.findBySpecialistName(newSpecialist.getSpecialistName());
+            Specialist existingSpecialist = specialistDao.findBySpecialistName(newSpecialist.getSpecialistName());
 
-        if (existingSpecialist != null) {
-            errors.rejectValue("specialistName", "specialistName.alreadyExists", "A doctor with that name already exists in the database.");
-            System.out.println("I found error");
-            return "/specialist/add";
+            if (existingSpecialist != null) {
+                errors.rejectValue("specialistName", "specialistName.alreadyExists", "A doctor with that name already exists in the database.");
+                System.out.println("I found error");
+                return "/specialist/add";
     }
 
         newSpecialist.setInsurance(insurances);

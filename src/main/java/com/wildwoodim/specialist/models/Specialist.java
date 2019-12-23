@@ -25,6 +25,8 @@ public class Specialist {
             message = "Invalid phone number")
     private String specialistContact;
 
+    private Integer specialistZip;
+
     private String note;
 
     public Specialist() {}
@@ -41,6 +43,14 @@ public class Specialist {
 
     @ManyToOne
     private Rating rating;
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 
     public Rating getRating() {
         return rating;
@@ -86,5 +96,13 @@ public class Specialist {
 
     public void setSpecialistContact(String specialistContact) {
         this.specialistContact = specialistContact;
+    }
+
+    public Integer getSpecialistZip() {
+        return specialistZip;
+    }
+
+    public void setSpecialistZip(Integer specialistZip) {
+        this.specialistZip = specialistZip;
     }
 }
